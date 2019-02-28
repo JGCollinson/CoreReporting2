@@ -116,9 +116,7 @@ function handleProfiles(response) {
   // Handles the response from the profiles list method.
   if (response.result.items && response.result.items.length) {
     // Get the first View (Profile) ID.
-    var firstProfileId = response.result.items
-    console.log(firstProfileId);
-    console.log("YOUR PROFILES")
+    var firstProfileId = response.result.items[0].id
 
     // Query the Core Reporting API.
     queryCoreReportingApi(firstProfileId);
