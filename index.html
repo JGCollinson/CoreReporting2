@@ -131,7 +131,7 @@ function queryCoreReportingApi(profileId) {
   // the past seven days.
   gapi.client.analytics.data.ga.get({
     'ids': 'ga:' + profileId,
-    'start-date': 'today',
+    'start-date': '30daysAgo',
     'end-date': 'today',
     'metrics': 'ga:sessions'
   })
