@@ -133,7 +133,10 @@ function queryCoreReportingApi(profileId) {
     'ids': 'ga:' + profileId,
     'start-date': '30daysAgo',
     'end-date': 'today',
-    'metrics': 'ga:sessions'
+    'metrics': 'ga:uniqueEvents',
+    'dimensions': 'ga:eventLabel',
+    'filters': 'ga:eventLabel==Red,ga:eventLabel==Blue',
+    'samplingLevel': 'FASTER'
   })
   .then(function(response) {
     // var formattedJson = JSON.stringify(response.result, null, 2);
