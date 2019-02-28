@@ -60,10 +60,8 @@ function handleAccounts(response) {
   if (response.result.items && response.result.items.length) {
     // Get the first Google Analytics account.
     var firstAccountId = response.result.items[6].id;
-    console.log(firstAccountId) 
-    console.log("Accounts")
     // Query for properties.
-    queryProperties("135281714");
+    queryProperties(firstAccountId);
   } else {
     console.log('No accounts found for this user.');
   }
@@ -88,13 +86,11 @@ function handleProperties(response) {
 
     // Get the first Google Analytics account
     var firstAccountId = response.result.items[0].accountId;
-    console.log(response.result.items) 
-    console.log("Properties")
     // Get the first property ID
     var firstPropertyId = response.result.items[0].id;
 
     // Query for Views (Profiles).
-    // queryProfiles(firstAccountId, firstPropertyId);
+    queryProfiles(firstAccountId, firstPropertyId);
   } else {
     console.log('No properties found for this user.');
   }
