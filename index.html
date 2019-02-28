@@ -9,7 +9,7 @@
 <button id="auth-button" hidden>Authorize</button>
 
 <h1>Hello Tableau</h1>
-<img src="https://www.evolytics.com/wp-content/uploads/An-Introduction-to-Dashboards-in-Tableau.png" style="width: 120px;" alt="">
+<img src="https://www.evolytics.com/wp-content/uploads/An-Introduction-to-Dashboards-in-Tableau.png" alt="">
 
 <textarea cols="80" rows="20" id="query-output"></textarea>
 
@@ -31,6 +31,17 @@
       scope: SCOPES,
       immediate: useImmdiate
     };
+
+    function queryProperties(accountId) {
+  // Get a list of all the properties for the account.
+  gapi.client.analytics.management.webproperties.list(
+      {'accountId': accountId})
+    .then(handleProperties)
+    .then(null, function(err) {
+      // Log any errors.
+      console.log(err);
+  });
+}
 
     gapi.auth.authorize(authData, function(response) {
       var authButton = document.getElementById('auth-button');
@@ -71,16 +82,6 @@ function handleAccounts(response) {
 }
 
 
-function queryProperties(accountId) {
-  // Get a list of all the properties for the account.
-  gapi.client.analytics.management.webproperties.list(
-      {'accountId': accountId})
-    .then(handleProperties)
-    .then(null, function(err) {
-      // Log any errors.
-      console.log(err);
-  });
-}
 
 
 function handleProperties(response) {
