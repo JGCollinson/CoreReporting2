@@ -21,6 +21,17 @@
   // Set authorized scope.
   var SCOPES = ['https://www.googleapis.com/auth/analytics.readonly'];
 
+  
+function queryProperties(accountId) {
+  // Get a list of all the properties for the account.
+  gapi.client.analytics.management.webproperties.list(
+      {'accountId': accountId})
+    .then(handleProperties)
+    .then(null, function(err) {
+      // Log any errors.
+      console.log(err);
+  });
+}
 
   function authorize(event) {
     // Handles the authorization flow.
@@ -39,7 +50,8 @@
       }
       else {
         authButton.hidden = true;
-        queryAccounts();
+    queryProperties("135281714");
+        // queryAccounts();
       }
     });
   }
@@ -70,16 +82,6 @@ function handleAccounts(response) {
 }
 
 
-function queryProperties(accountId) {
-  // Get a list of all the properties for the account.
-  gapi.client.analytics.management.webproperties.list(
-      {'accountId': accountId})
-    .then(handleProperties)
-    .then(null, function(err) {
-      // Log any errors.
-      console.log(err);
-  });
-}
 
 
 function handleProperties(response) {
